@@ -1,0 +1,32 @@
+.TaskAddButton {
+    background-color: #333333;
+    display: block;
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 134px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.TaskAddButton .Text {
+    font-size: 24px;
+    display: block;
+    color: #E0E0E0;
+    font-weight: bold;
+}
+.TaskAddButton .Sign {
+    height: 41px;
+    width: 41px;
+    display: block;
+    border-radius: 50%;
+}
+.red {
+   background-color: #EB5757;
+}
+.green {
+    background-color: #219653;
+}
+.blue {
+    background-color: #2D9CDB;
+}

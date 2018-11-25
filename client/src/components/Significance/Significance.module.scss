@@ -1,0 +1,25 @@
+@import '../../constants.scss';
+
+.Significance {
+    height: 41px;
+    width: 41px;
+    border-radius: 50%;
+    display: block;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.important {
+        background-color: $important;
+    }
+    &.regular {
+        background-color: $regular;
+    }
+    &.unimportant {
+        background-color: $unimportant;
+    }
+    &.completed {
+        background-color: $completed;
+    }
+}

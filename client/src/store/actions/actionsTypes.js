@@ -1,0 +1,7 @@
+export const ADD_TASK = 'ADD_TASK'
+export const REMOVE_TASK = 'REMOVE_TASK'
+export const CHANGE_TASK = 'CHANGE_TASK'
+export const SET_TASKS = 'SET_TASKS'
+export const FETCH_TASKS_START = 'FETCH_TASKS_START'
+export const FETCH_TASKS_SUCESS = 'FETCH_TASKS_SUCESS'
+export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED'

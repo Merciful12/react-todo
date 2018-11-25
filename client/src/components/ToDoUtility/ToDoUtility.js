@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classes from './ToDoUtility.css'
+import classes from './ToDoUtility.module.scss'
 
 const toDoUtility = () => {
   return (

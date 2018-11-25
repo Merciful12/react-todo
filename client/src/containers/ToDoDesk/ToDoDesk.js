@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ToDoItems from '../../components/ToDoItems/ToDoItems'
 import ToDoUtility from '../../components/ToDoUtility/ToDoUtility'
 
-import classes from './ToDoDesk.css'
+import classes from './ToDoDesk.module.scss'
 
 class ToDoDesk extends Component {
   render() {

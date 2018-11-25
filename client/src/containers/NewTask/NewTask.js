@@ -2,28 +2,28 @@ import React, { Component } from 'react';
 
 import TaskAddButton from '../../components/TaskAddButton/TaskAddButton';
 import TaskInput from '../../components/TaskInput/TaskInput';
-import classes from './NewTask.css'
+import classes from './NewTask.module.scss'
 
 class NewTask extends Component {
   state = {
-    currentSign: 'red',
+    currentSign: 'important',
     text: ''
   }
 
   changeSing = () => {
     let newColor;
     switch (this.state.currentSign) {
-      case 'red':
-        newColor = 'green';
+      case 'important':
+        newColor = 'regular';
         break;
-      case 'green':
-        newColor = 'blue';
+      case 'regular':
+        newColor = 'unimportant';
         break;
-      case 'blue':
-        newColor = 'red';
+      case 'unimportant':
+        newColor = 'important';
         break;
       default:
-        newColor = 'red';
+        newColor = 'important';
     }
 
     this.setState({currentSign: newColor});

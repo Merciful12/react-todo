@@ -7,12 +7,12 @@
     padding: 12px 0;
     flex-flow: row;
     justify-content: space-between;
-    &:hover .trash {
+    &:hover .Trash {
         visibility: visible;
         cursor: pointer;
     }
     &.Completed {
-        color: $grey;
+        color: $grey + #444444;
     }
 }
 .text {
@@ -25,6 +25,6 @@
     }
 }
 
-.trash {
+.Trash {
     visibility: hidden;
 }

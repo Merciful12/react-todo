@@ -8,8 +8,8 @@ const taskAddButton = (props) => {
   let {color} = props;
   return (
     <div className={classes.TaskAddButton}>
-      <div className={classes.Text}>Add</div>
-      <Significance onClicked={props.clicked} color={color} />
+      <div onClick={props.clickAdd} className={classes.Text}>Add</div>
+      <Significance onClicked={props.clickOnSing} color={color} />
     </div>
   );
 };

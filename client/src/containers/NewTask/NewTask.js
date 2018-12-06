@@ -1,13 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import TaskAddButton from '../../components/TaskAddButton/TaskAddButton';
-import TaskInput from '../../components/TaskInput/TaskInput';
+import * as actions from '../../store/actions'
+
+import TaskAddButton from '../../components/TaskAddButton/TaskAddButton'
+import TaskInput from '../../components/TaskInput/TaskInput'
+
 import classes from './NewTask.module.scss'
 
 class NewTask extends Component {
   state = {
     currentSign: 'important',
     text: ''
+  }
+
+  addTask = () => {
+    const significance = this.state.currentSign
+    const text = this.state.text
+    if (!text) return
+
+    const task = {
+      significance,
+      text
+    }
+    this.props.onAddTask(task)
+    this.setState({
+      currentSign: 'important',
+      text: ''
+    })
   }
 
   changeSing = () => {
@@ -32,7 +52,6 @@ class NewTask extends Component {
   changeInput = (e) => {
     let newText = e.target.value
     this.setState({text: newText})
-    
   }
   
   render() {
@@ -44,11 +63,16 @@ class NewTask extends Component {
         />
         <TaskAddButton
           color={this.state.currentSign}
-          clicked={this.changeSing}
+          clickOnSing={this.changeSing}
+          clickAdd={this.addTask}
         />
       </div>
     );
   }
 }
 
-export default NewTask;
+const mapDispatchToProps = dispatch => ({
+  onAddTask: (task) => dispatch(actions.addTask(task))
+})
+
+export default connect(null, mapDispatchToProps)(NewTask)

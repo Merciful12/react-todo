@@ -14,5 +14,9 @@
         display: block;
         color: $grey + #555555;
         font-weight: bold;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

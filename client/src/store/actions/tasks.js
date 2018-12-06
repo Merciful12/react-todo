@@ -2,21 +2,44 @@ import * as actionTypes from './actionsTypes'
 
 import todoService from '../../services/todoService'
 
+export const addTaskStart = () => ({
+  type: actionTypes.ADD_TASK_START
+})
+
+export const addTaskFailed = (error) => ({
+  type: actionTypes.ADD_TASK_FAILED,
+  payload: {
+    error
+  }
+})
+
 export const addTask = (task) => {
-  return {
-    type: actionTypes.ADD_TASK,
-    payload: {
-      task
-    }
+  return dispatch => {
+    dispatch(addTaskStart())
+    todoService.create(task)
+      .then(() => {
+        dispatch(fetchTasks())
+      })
+      .catch(error => {
+        dispatch(addTaskFailed(error))      
+      })
   }
 }
 
+export const removeTaskStart = () => ({
+  type: actionTypes.REMOVE_TASK_START
+})
+
 export const removeTask = (taskId) => {
-  return {
-    type: actionTypes.REMOVE_TASK,
-    payload: {
-      taskId
-    }
+  return dispatch => {
+    dispatch(removeTaskStart())
+    todoService.remove(taskId)
+      .then(() => {
+        dispatch(fetchTasks())
+      })
+      .catch(error => {
+        dispatch(addTaskFailed(error))      
+      })
   }
 }
 

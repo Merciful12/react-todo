@@ -6,6 +6,10 @@ export const addTaskStart = () => ({
   type: actionTypes.ADD_TASK_START
 })
 
+export const addTaskSuccess = () => ({
+  type: actionTypes.ADD_TASK_SUCESS
+})
+
 export const addTaskFailed = (error) => ({
   type: actionTypes.ADD_TASK_FAILED,
   payload: {
@@ -18,6 +22,7 @@ export const addTask = (task) => {
     dispatch(addTaskStart())
     todoService.create(task)
       .then(() => {
+        dispatch(addTaskSuccess())
         dispatch(fetchTasks())
       })
       .catch(error => {
@@ -30,15 +35,27 @@ export const removeTaskStart = () => ({
   type: actionTypes.REMOVE_TASK_START
 })
 
+export const removeTaskFailed = (error) => ({
+  type: actionTypes.REMOVE_TASK_FAILED,
+  payload: {
+    error
+  }
+})
+
+export const removeTaskSuccess = () => ({
+  type: actionTypes.REMOVE_TASK_SUCESS
+})
+
 export const removeTask = (taskId) => {
   return dispatch => {
     dispatch(removeTaskStart())
     todoService.remove(taskId)
       .then(() => {
+        dispatch(removeTaskSuccess())
         dispatch(fetchTasks())
       })
       .catch(error => {
-        dispatch(addTaskFailed(error))      
+        dispatch(removeTaskFailed(error))      
       })
   }
 }

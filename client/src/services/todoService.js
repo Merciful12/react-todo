@@ -12,6 +12,9 @@ const todoService = {
   },
   change (task) {
     return api().put(`tasks/${task.id}`, task)
+  },
+  remove (taskId) {
+    return api().delete(`tasks/${taskId}`)
   }
 }
 export default todoService

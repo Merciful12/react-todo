@@ -1,15 +1,19 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 import { connect } from "react-redux";
-import * as actions from "../../store/actions";
+import * as actions from "../../store/actions"
 
-import ToDoItem from "./ToDoItem/ToDoItem";
+import ToDoItem from "./ToDoItem/ToDoItem"
 
-import classes from "./ToDoItems.module.scss";
+import classes from "./ToDoItems.module.scss"
 
 class ToDoItems extends Component {
-  componentDidMount() {
-    this.props.onFetchTasks();
+  componentDidMount () {
+    this.props.onFetchTasks()
+  }
+
+  deleteTaskHandler = (taskId) => {
+    this.props.onRemoveTask(taskId)
   }
 
   render() {
@@ -22,6 +26,7 @@ class ToDoItems extends Component {
         {this.props.tasks.map(task => (
           <ToDoItem
             key={task.id}
+            onClickRemove={ () => this.deleteTaskHandler(task.id)}
             {...task}
           />
         ))}
@@ -32,20 +37,21 @@ class ToDoItems extends Component {
       <div className={classes.ToDoItems}>
         {tasks}
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => ({
   tasks: state.tasks.tasks,
   loading: state.tasks.loading
-});
+})
 
 const mapDispatchToProps = dispatch => ({
-  onFetchTasks: () => dispatch(actions.fetchTasks())
-});
+  onFetchTasks: () => dispatch(actions.fetchTasks()),
+  onRemoveTask: (taskId) => dispatch(actions.removeTask(taskId))
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ToDoItems);
+)(ToDoItems)

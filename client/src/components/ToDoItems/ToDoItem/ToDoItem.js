@@ -11,7 +11,7 @@ export default function toDoItem(props) {
     <div className={TaskStyle.join(' ')}>
       <Significance color={props.completed ? 'completed' : props.significance} />
       <div className={classes.text}>{props.text}</div>
-      <Trash className={classes.Trash} />
+      <Trash className={classes.Trash} onClick={props.onClickRemove}/>
     </div>
   )
 }

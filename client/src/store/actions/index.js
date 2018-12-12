@@ -1,4 +1,5 @@
 export {
   fetchTasks,
-  addTask
+  addTask,
+  removeTask
 } from './tasks.js'

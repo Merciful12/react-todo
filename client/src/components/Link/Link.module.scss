@@ -1,0 +1,10 @@
+button {
+    font-size: 36px;
+    color: #bdbdbd;
+    background: none;
+    border: none;
+    margin: 5px 7px;
+    &:disabled {
+        color: #7a7a7a;
+    }
+}

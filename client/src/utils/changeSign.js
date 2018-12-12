@@ -10,7 +10,7 @@ export const changeSing = (currentSign) => {
     case REGULAR: return UNIMPORTANT
 
     case UNIMPORTANT: return IMPORTANT
-    
+
     default: return IMPORTANT
   }
 }

@@ -8,9 +8,11 @@ import TaskInput from '../../components/TaskInput/TaskInput'
 
 import classes from './NewTask.module.scss'
 
+import {IMPORTANT, changeSing} from '../../utils/changeSign'
+
 class NewTask extends Component {
   state = {
-    currentSign: 'important',
+    currentSign: IMPORTANT,
     text: ''
   }
 
@@ -25,26 +27,13 @@ class NewTask extends Component {
     }
     this.props.onAddTask(task)
     this.setState({
-      currentSign: 'important',
+      currentSign: IMPORTANT,
       text: ''
     })
   }
 
   changeSing = () => {
-    let newColor;
-    switch (this.state.currentSign) {
-      case 'important':
-        newColor = 'regular';
-        break;
-      case 'regular':
-        newColor = 'unimportant';
-        break;
-      case 'unimportant':
-        newColor = 'important';
-        break;
-      default:
-        newColor = 'important';
-    }
+    let newColor = changeSing(this.state.currentSign)
 
     this.setState({currentSign: newColor});
   }

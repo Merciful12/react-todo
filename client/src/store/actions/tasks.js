@@ -2,6 +2,8 @@ import * as actionTypes from './actionsTypes'
 
 import todoService from '../../services/todoService'
 
+import {changeSing} from '../../utils/changeSign'
+
 export const addTaskStart = () => ({
   type: actionTypes.ADD_TASK_START
 })
@@ -117,6 +119,23 @@ export const toggleComplete = (task) => {
     todoService.change(updatedTask)
       .then(() => {
         dispatch(toggleCompleteSuccess())
+        dispatch(fetchTasks())
+      })
+      .catch(error => {
+        dispatch(toggleCompleteFailed(error))      
+      })
+  }
+}
+
+export const changeSignTask = (task) => {
+  return dispatch => {
+    const significance = changeSing(task.significance)
+    const updatedTask = {
+      ...task,
+      significance
+    }
+    todoService.change(updatedTask)
+      .then(() => {
         dispatch(fetchTasks())
       })
       .catch(error => {

@@ -9,7 +9,7 @@ export default function toDoItem(props) {
   let TaskStyle = [classes.TodoItem, (props.completed ? classes.Completed : null)]
   return (
     <div className={TaskStyle.join(' ')}>
-      <Significance color={props.completed ? 'completed' : props.significance} />
+      <Significance onClicked={props.onClickChangeSign} color={props.completed ? 'completed' : props.significance} />
       <div onClick={props.onClickToggle} className={classes.text}>{props.text}</div>
       <Trash className={classes.Trash} onClick={props.onClickRemove}/>
     </div>

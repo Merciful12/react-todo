@@ -91,3 +91,36 @@ export const fetchTasks = () => {
       })
   }
 }
+
+export const toggleCompleteStart = () => ({
+  type: actionTypes.REMOVE_TASK_START
+})
+
+export const toggleCompleteFailed = (error) => ({
+  type: actionTypes.REMOVE_TASK_FAILED,
+  payload: {
+    error
+  }
+})
+
+export const toggleCompleteSuccess = () => ({
+  type: actionTypes.REMOVE_TASK_SUCESS
+})
+
+export const toggleComplete = (task) => {
+  return dispatch => {
+    dispatch(removeTaskStart())
+    const updatedTask = {
+      ...task,
+      completed: !task.completed 
+    }
+    todoService.change(updatedTask)
+      .then(() => {
+        dispatch(toggleCompleteSuccess())
+        dispatch(fetchTasks())
+      })
+      .catch(error => {
+        dispatch(toggleCompleteFailed(error))      
+      })
+  }
+}

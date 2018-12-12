@@ -16,6 +16,10 @@ class ToDoItems extends Component {
     this.props.onRemoveTask(taskId)
   }
 
+  toggleCompleteHandler = (taskId) => {
+    this.props.onToggleComplete(taskId)
+  }
+
   render() {
     let tasks
     if (this.props.loading) {
@@ -27,6 +31,7 @@ class ToDoItems extends Component {
           <ToDoItem
             key={task.id}
             onClickRemove={ () => this.deleteTaskHandler(task.id)}
+            onClickToggle={() => this.toggleCompleteHandler(task)}
             {...task}
           />
         ))}
@@ -48,7 +53,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onFetchTasks: () => dispatch(actions.fetchTasks()),
-  onRemoveTask: (taskId) => dispatch(actions.removeTask(taskId))
+  onRemoveTask: (taskId) => dispatch(actions.removeTask(taskId)),
+  onToggleComplete: (taskId) => dispatch(actions.toggleComplete(taskId)),
 })
 
 export default connect(

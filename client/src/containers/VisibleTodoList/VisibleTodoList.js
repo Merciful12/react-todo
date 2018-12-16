@@ -40,6 +40,7 @@ const mapDispatchToProps = dispatch => ({
   onRemoveTask: (taskId) => dispatch(actions.removeTask(taskId)),
   onToggleComplete: (task) => dispatch(actions.toggleComplete(task)),
   onChangeSign: (task) => dispatch(actions.changeSignTask(task)),
+  onDnD: (taskId, new_position) => dispatch(actions.changePositionTask(taskId, new_position)),
 })
 
 export default connect(

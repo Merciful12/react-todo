@@ -4,6 +4,7 @@ export {
   removeTask,
   toggleComplete,
   changeSignTask,
+  changePositionTask,
 } from './tasks.js'
 
 export {

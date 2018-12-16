@@ -18,9 +18,12 @@ const reducer = (state = initialState, {type, payload}) => {
         loading: false,
         tasks: payload.tasks
       })
+    
+    case actionTypes.CHANGE_POSITION_START:
+      return Object.assign({}, state, {loading: true})
 
     default:
-      return state
+    return state
   }
 }
 

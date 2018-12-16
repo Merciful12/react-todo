@@ -4,60 +4,26 @@ import todoService from '../../services/todoService'
 
 import {changeSing} from '../../utils/changeSign'
 
-export const addTaskStart = () => ({
-  type: actionTypes.ADD_TASK_START
-})
-
-export const addTaskSuccess = () => ({
-  type: actionTypes.ADD_TASK_SUCESS
-})
-
-export const addTaskFailed = (error) => ({
-  type: actionTypes.ADD_TASK_FAILED,
-  payload: {
-    error
-  }
-})
-
 export const addTask = (task) => {
   return dispatch => {
-    dispatch(addTaskStart())
     todoService.create(task)
       .then(() => {
-        dispatch(addTaskSuccess())
         dispatch(fetchTasks())
       })
       .catch(error => {
-        dispatch(addTaskFailed(error))      
+        console.log(error)
       })
   }
 }
 
-export const removeTaskStart = () => ({
-  type: actionTypes.REMOVE_TASK_START
-})
-
-export const removeTaskFailed = (error) => ({
-  type: actionTypes.REMOVE_TASK_FAILED,
-  payload: {
-    error
-  }
-})
-
-export const removeTaskSuccess = () => ({
-  type: actionTypes.REMOVE_TASK_SUCESS
-})
-
 export const removeTask = (taskId) => {
   return dispatch => {
-    dispatch(removeTaskStart())
     todoService.remove(taskId)
       .then(() => {
-        dispatch(removeTaskSuccess())
         dispatch(fetchTasks())
       })
       .catch(error => {
-        dispatch(removeTaskFailed(error))      
+        console.log(error)
       })
   }
 }
@@ -94,35 +60,18 @@ export const fetchTasks = () => {
   }
 }
 
-export const toggleCompleteStart = () => ({
-  type: actionTypes.REMOVE_TASK_START
-})
-
-export const toggleCompleteFailed = (error) => ({
-  type: actionTypes.REMOVE_TASK_FAILED,
-  payload: {
-    error
-  }
-})
-
-export const toggleCompleteSuccess = () => ({
-  type: actionTypes.REMOVE_TASK_SUCESS
-})
-
 export const toggleComplete = (task) => {
   return dispatch => {
-    dispatch(removeTaskStart())
     const updatedTask = {
       ...task,
       completed: !task.completed 
     }
     todoService.change(updatedTask)
       .then(() => {
-        dispatch(toggleCompleteSuccess())
         dispatch(fetchTasks())
       })
       .catch(error => {
-        dispatch(toggleCompleteFailed(error))      
+        console.log(error)
       })
   }
 }
@@ -139,7 +88,28 @@ export const changeSignTask = (task) => {
         dispatch(fetchTasks())
       })
       .catch(error => {
-        dispatch(toggleCompleteFailed(error))      
+        console.log(error)
+      })
+  }
+}
+
+export const changePositionTaskStart = () => ({
+  type: actionTypes.CHANGE_POSITION_START
+})
+
+export const changePositionTask = (taskId, new_position) => {
+  return dispatch => {
+    dispatch(changePositionTaskStart())
+    const updatedTask = {
+      id: taskId,
+      new_position
+    }
+    todoService.change(updatedTask)
+      .then(() => {
+        dispatch(fetchTasks())
+      })
+      .catch(error => {
+        console.log(error)
       })
   }
 }

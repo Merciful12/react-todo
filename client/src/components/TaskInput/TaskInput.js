@@ -8,6 +8,7 @@ const taskInput = (props) => {
       className={classes.TaskInput}
       placeholder={props.place}
       onChange={props.changed}
+      value={props.value}
     />
   )
 }
